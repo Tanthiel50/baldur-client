@@ -1,0 +1,15 @@
+.game-card {
+    margin: 1rem 0;
+    transition: transform 0.2s; /* Animation au survol */
+  }
+  
+  .game-card:hover {
+    transform: scale(1.05); /* Légèrement plus grand au survol */
+  }
+  
+  .game-card .btn {
+    background-color: #ffa500; /* Couleur de fond par défaut des boutons */
+    border: none; /* Pas de bordure */
+    color: white; /* Texte blanc par défaut */
+    margin-top: 1rem; /* Espace au-dessus du bouton */
+  }

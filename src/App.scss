@@ -1,0 +1,26 @@
+:root {
+	--primary-color: #191970;
+	--secondary-color: #8B0000;
+    --tertiary-color: #DAA520;
+	--dark-color: #0D1B2A;
+    --dark-light: #0D1B2A;
+    --text: #C0C0C0;
+    --gray: #BDBDBD;
+    --purple: #D9D9D9;
+    --gradient: rgb(252, 207, 49);
+	// --box-shadow-primary-color: 0 20px 50px #111827;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    font-family: 'Oxanium', sans-serif;
+}
+
+html{
+    background-color: var(--dark-color);
+    color: var(--text);
+    overflow-x: hidden;
+}
