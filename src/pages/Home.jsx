@@ -1,17 +1,14 @@
 import React from "react";
-import NavBar from "./components/NavBar";
 import HeroBanner from "./components/HeroBanner";
 import GameCardGrid from "./components/GameCardGrid";
 import "../App.scss";
 import EventBox from "./components/EventBox";
 import CategoriesButton from "./components/CategoriesButtons";
-import Footer from "./components/Footer";
 import { Link } from "react-router-dom";
 
 function Home() {
   return (
     <div className="App">
-      <NavBar />
       <HeroBanner />
       <div>
         <div className="pt-5 firstBox">
@@ -56,7 +53,6 @@ function Home() {
       </div>
       <EventBox />
       <CategoriesButton />
-      <Footer />
     </div>
   );
 }
