@@ -25,7 +25,7 @@ const MyNavbar = () => {
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-success">Search</Button>
         </Form> */}
-        <Button variant="button-5" className="ml-2">Sign in</Button>
+        <Button variant="button-5" className="ml-2">Se connecter</Button>
       </Navbar.Collapse>
     </Navbar>
   );
