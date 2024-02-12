@@ -28,11 +28,11 @@ const ArticlesGrid = ({ apiUrl }) => {
         {articles.map((article, index) => (
           <Col key={index} lg={4} md={6} className="mb-3">
             <Card>
-              <Card.Img variant="top" src={article.image || 'placeholder-image.jpg'} />
+              <Card.Img variant="top" src={article.pointThumbnail || 'placeholder-image.jpg'} />
               <Card.Body>
-                <Card.Title>{article.articleTitle}</Card.Title>
+                <Card.Title>{article.pointTitle}</Card.Title>
                 <Card.Text>
-                {truncateText(article.articleContent, 80)}
+                {truncateText(article.pointContent, 80)}
                 </Card.Text>
               </Card.Body>
             </Card>

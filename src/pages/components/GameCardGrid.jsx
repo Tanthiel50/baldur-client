@@ -29,9 +29,9 @@ const GameCardGrid = ({ apiUrl, cardColors }) => {
             <GameCard
               bgColor={cardColors.bgColor}
               btnColor={cardColors.btnColor}
-              title={item.articleTitle}
-              thumbnail={item.articleThumbnail}
-              content={item.articleContent}
+              title={item.pointTitle}
+              thumbnail={item.pointThumbnail}
+              content={item.pointContent}
             />
           </Col>
         ))

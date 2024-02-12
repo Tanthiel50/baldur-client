@@ -10,12 +10,12 @@ const Dormir = () => {
     <div style={{backgroundColor:'#0D1B2A', textAlign:'center'}}>
       <MyNavbar />
       <PageHeader
-        title="Les Hotels"
-        breadcrumbPath="Hotels"
+        title="Les Auberges"
+        breadcrumbPath="Auberges"
         backgroundImageUrl={backgroundImageUrl}
       />
-      <h2 color="black" style={{paddingTop:'3rem'}}>Découvrez les hotels de Baldur</h2>
-      <ArticlesGrid apiUrl={'http://127.0.0.1:8000/api/articles/category/5'} />
+      <h2 color="black" style={{paddingTop:'3rem'}}>Découvrez les auberges de Baldur</h2>
+      <ArticlesGrid apiUrl={'http://127.0.0.1:8000/api/interestpoints/category/2'} />
       <Footer />
     </div>
   );
