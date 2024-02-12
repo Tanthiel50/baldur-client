@@ -1,44 +1,41 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import './CategoriesButton.css'; 
+import './CategoriesButton.css';
+import categoriesInfo from './categoriesInfo'; 
 
-const categories = [
-  { name: 'Auberges', id: 1 },
-  { name: 'Marchands', id: 2 },
-  { name: 'Tavernes', id: 3 },
-  { name: 'Curiosités', id: 4 },
-  { name: 'Rserve naturel', id: 5 },
-  { name: 'Zone à risques', id: 6 },
-  { name: 'Escape Game', id: 7 },
-];
-
-const CategoryButton = ({ category }) => {
+const CategoryButton = ({ name, id }) => {
   const navigate = useNavigate();
 
-  const handleButtonClick = (categoryId) => {
-    navigate(`/category/${categoryId}`);
+  const handleButtonClick = () => {
+    navigate(`/categories/${id}`);
   };
 
   return (
     <Button 
       variant="secondary" 
       className="category-button" 
-      onClick={() => handleButtonClick(category.id)}
+      onClick={handleButtonClick}
     >
-      {category.name}
+      {name}
     </Button>
   );
 };
 
 const CategoriesButton = () => {
+  
+  const categoriesArray = Object.entries(categoriesInfo).map(([id, { name }]) => ({
+    id,
+    name,
+  }));
+
   return (
     <Container fluid className="categories-container">
-      <h2 className="text-center text-light mb-4">A voir</h2>
+      <h2 className="text-center text-light mb-4">À voir</h2>
       <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
-        {categories.map((category, idx) => (
+        {categoriesArray.map((category, idx) => (
           <Col key={idx} className="d-flex justify-content-center">
-            <CategoryButton category={category} />
+            <CategoryButton {...category} />
           </Col>
         ))}
       </Row>

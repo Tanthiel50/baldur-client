@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../Home";
 import LoginForm from "../LoginForm";
-import Dormir from "../Dormir";
-import Boutiques from "../Boutiques";
+import CategoryPage from "./CategoryPage";
 
 
 const RouterOutlet = () => {
@@ -10,8 +9,7 @@ const RouterOutlet = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<LoginForm />} />
-      <Route path="/dormir" element={<Dormir />} />
-      <Route path="/boutiques" element={<Boutiques />} />
+      <Route path="/categories/:categoryId" element={<CategoryPage />} />
     </Routes>
   );
 };

@@ -6,7 +6,7 @@ const EventBox = () => {
     <Container fluid className="text-light p-5" style={{ backgroundColor: '#0D1B2A' }}> {/* Remplacer par votre couleur de fond exacte */}
       <Row>
         <Col md={6} className="d-flex align-items-center justify-content-center">
-          {/* Ici, vous ajouterez l'image ou un autre contenu pour la partie gauche */}
+          <img src="https://i.insertcred.it/2023/08/baldurs-gate-3-bard--3-.webp" alt="" />
         </Col>
         <Col md={6} className="p-5">
           <div className="mb-4">
