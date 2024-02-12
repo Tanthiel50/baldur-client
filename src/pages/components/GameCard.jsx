@@ -1,15 +1,19 @@
-// GameCard.js
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
-import './GameCard.css'; // Assurez-vous de créer ce fichier CSS pour vos styles personnalisés
+import './GameCard.css';
 
-const GameCard = ({ bgColor, textColor, btnColor, gameTitle, gameInfo, buttonText }) => {
+const GameCard = ({ bgColor, btnColor, title, thumbnail, content }) => {
+  const buttonStyle = {
+    background: btnColor,
+    borderColor: btnColor,
+  };
+
   return (
-    <Card className="game-card" style={{ backgroundColor: bgColor }}>
+    <Card className="game-card" style={{ backgroundColor: bgColor, backgroundImage: `url(${thumbnail})`, backgroundSize: 'cover', color: '#fff' }}>
       <Card.Body>
-        <Card.Title style={{ color: textColor }}>{gameTitle}</Card.Title>
-        <Card.Text style={{ color: textColor }}>{gameInfo}</Card.Text>
-        <Button variant={btnColor}>{buttonText}</Button>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text style={{textAlign: 'left'}}>{content?.substring(0, 80)}...</Card.Text>
+        <Button style={buttonStyle}>Découvrir</Button>
       </Card.Body>
     </Card>
   );

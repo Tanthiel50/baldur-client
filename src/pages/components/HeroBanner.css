@@ -5,18 +5,19 @@
     color: white;
     display: flex;
     align-items: center; 
-    justify-content: center; /* Centrer le contenu horizontalement */
+    justify-content: center; 
   }
   
   .info-box {
-    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
     margin: 20px 0;
     border-radius: 4px;
   }
   
   h1 {
-    font-size: larger;
+    font-size: 4rem !important;
+    font-weight: bolder !important;
     margin-bottom: 1rem;
     text-align: left; 
     font-weight: bold;

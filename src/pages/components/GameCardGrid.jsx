@@ -1,40 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import GameCard from './GameCard';
+import axios from 'axios';
 
-const GameCardGrid = () => {
-  const [games, setGames] = useState([]);
+const GameCardGrid = ({ apiUrl, cardColors }) => {
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    // Simuler un appel API
-    const fetchGames = async () => {
-      // Vous remplacerez cette URL par l'URL de votre API
-      const response = await fetch('#');
-      const data = await response.json();
-      setGames(data);
+    const fetchItems = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/${apiUrl}`);
+        const data = response.data.slice(0, 3); 
+        setItems(data);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données', error);
+      }
     };
 
-    fetchGames();
-  }, []);
+    fetchItems();
+  }, [apiUrl]);
 
   return (
-    <Container>
-      <Row>
-        {games.map((game, index) => (
-          <Col key={index} md={3}>
+  <Container className="my-3 p-3" style={{ borderRadius: '8px', backgroundColor: cardColors.gridBackground }}>
+    <Row>
+      {items.length > 0 ? (
+        items.map((item, index) => (
+          <Col key={index} md={4}>
             <GameCard
-              bgColor={game.bgColor}
-              textColor={game.textColor}
-              btnColor={game.btnColor}
-              gameTitle={game.title}
-              gameInfo={game.info}
-              buttonText={game.buttonText}
+              bgColor={cardColors.bgColor}
+              btnColor={cardColors.btnColor}
+              title={item.articleTitle}
+              thumbnail={item.articleThumbnail}
+              content={item.articleContent}
             />
           </Col>
-        ))}
-      </Row>
-    </Container>
-  );
+        ))
+      ) : (
+        <div>Chargement des articles...</div>
+      )}
+    </Row>
+  </Container>
+);
 };
+
+
 
 export default GameCardGrid;

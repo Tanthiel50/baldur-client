@@ -21,7 +21,7 @@ const MyNavbar = () => {
             <NavDropdown.Item href="#action/3.5">Plan</NavDropdown.Item>
           </NavDropdown>
         </Nav>
-        <Form inline className="ml-auto">
+        <Form className="ml-auto">
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-success">Search</Button>
         </Form>

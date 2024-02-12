@@ -2,6 +2,7 @@
   "name": "baldur-client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://127.0.0.1:8000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -33,6 +34,7 @@
       ">0.2%",
       "not dead",
       "not op_mini all"
+      
     ],
     "development": [
       "last 1 chrome version",

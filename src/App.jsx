@@ -1,24 +1,15 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import "./App.scss";
+import RouterOutlet from "../src/pages/components/RouterOutlet";
+import { UserProvider, useUserContext } from "./context/UserProvider";
 
 function App() {
   return (
-    <BrowserRouter>
-      {" "}
-      <Routes>
-        {" "}
-        <Route path="/" element={<Home />} />{" "}
-        {/* <Route path="/clubs" element={<Clubs />} />{" "}
-        <Route path="/clubs/add" element={<AddClub />} />{" "}
-        <Route path="/clubs/edit/:club" element={<EditClub />} />{" "}
-        <Route path="/players" element={<Players />} />{" "}
-        <Route path="/players/add" element={<AddPlayer />} />{" "}
-        <Route path="/players/edit/:player" element={<EditPlayer />} />{" "} */}
-        <Route path="*" element={<Home />} />{" "}
-      </Routes>{" "}
-    </BrowserRouter>
+    <>
+        <UserProvider>
+          <RouterOutlet />
+      </UserProvider>
+    </>
   );
 }
 export default App;
