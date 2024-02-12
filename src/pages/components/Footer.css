@@ -1,0 +1,25 @@
+.footer h5 {
+    color: #fff; /* Ou utilisez la couleur spécifique de votre design */
+  }
+  
+  .footer ul {
+    padding-left: 0;
+  }
+  
+  .footer ul li {
+    margin-bottom: 10px;
+    color: #aaa; /* Ou utilisez la couleur spécifique de votre design */
+  }
+  
+  .footer .fa {
+    color: #ddd; /* Ou utilisez la couleur spécifique de votre design */
+    font-size: 1.5rem; /* Ou la taille que vous souhaitez */
+  }
+  
+  .footer .form-control {
+    border-radius: 0;
+  }
+  
+  .footer button {
+    border-radius: 0;
+  }

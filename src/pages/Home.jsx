@@ -3,6 +3,9 @@ import NavBar from "./components/NavBar";
 import HeroBanner from "./components/HeroBanner";
 import GameCardGrid from "./components/GameCardGrid";
 import "../App.scss";
+import EventBox from "./components/EventBox";
+import CategoriesButton from "./components/CategoriesButtons";
+import Footer from "./components/Footer";
 
 function Home() {
   return (
@@ -36,6 +39,9 @@ function Home() {
         <button className="button-5">Voir toutes les boutiques</button>
         </div>
       </div>
+      <EventBox/>
+      <CategoriesButton/>
+      <Footer/>
     </div>
   );
 }

@@ -1,0 +1,14 @@
+.categories-container {
+    background-color: #0D1B2A; 
+    padding: 5rem; 
+  }
+  
+  .category-button {
+    background: #8B0000; 
+    border: none;
+    color: white; 
+    margin: 0.5rem; 
+    width: 100%; 
+    height: 100%; 
+    
+  }
