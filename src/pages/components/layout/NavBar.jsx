@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const MyNavbar = () => {
   return (
@@ -8,10 +9,10 @@ const MyNavbar = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mx-auto">
-          <Nav.Link href="#home">La ville de Baldur</Nav.Link>
-          <Nav.Link href="#link">Dormir</Nav.Link>
-          <Nav.Link href="#link">Manger</Nav.Link>
-          <Nav.Link href="#link">Boutiques</Nav.Link>
+        <Nav.Link as={Link} to="/">La ville de Baldur</Nav.Link>
+          <Nav.Link as={Link} to="/categories/1">Dormir</Nav.Link> 
+          <Nav.Link as={Link} to="/categories/3">Manger</Nav.Link> 
+          <Nav.Link as={Link} to="/categories/2">Boutiques</Nav.Link>
           <NavDropdown title="Autre" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Blog</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">Events</NavDropdown.Item>

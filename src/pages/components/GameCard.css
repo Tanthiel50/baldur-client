@@ -6,7 +6,7 @@
   }
   
   .game-card:hover {
-    transform: scale(1.05); /* Légèrement plus grand au survol */
+    transform: scale(1.05); 
   }
   
   .game-card .btn {

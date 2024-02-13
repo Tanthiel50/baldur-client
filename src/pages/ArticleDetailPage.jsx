@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import axios from 'axios';
-import './ArticleDetailPage.css';
+import { Link } from 'react-router-dom';
+import PageHeader from './components/PageHeader';
+import { Row, Col, Image } from 'react-bootstrap';
 
 const ArticleDetailPage = () => {
   const { articleId } = useParams();
@@ -23,15 +24,23 @@ const ArticleDetailPage = () => {
 
   if (!article) return <div>Chargement de l'article...</div>;
 
+  const breadcrumbPath = (
+    <>
+      <Link to={`/categories/${article.pointCategories_id}`}>Catégorie</Link> / {article.pointTitle}
+    </>
+  );
+
   return (
-    <Container className="article-detail-container" style={{ backgroundColor:'#0D1B2A'}}>
+    <div>
+      <PageHeader
+        title={article.pointTitle}
+        breadcrumbPath={breadcrumbPath}
+        backgroundImageUrl={article.pointThumbnail} 
+      />
+
       <Row className="justify-content-md-center">
         <Col md={8}>
-          <Image src={article.pointThumbnail} alt={article.pointTitle} fluid />
           <h1 className="article-title">{article.pointTitle}</h1>
-          <p className="article-meta">
-            {new Date(article.created_at).toLocaleDateString()}
-          </p>
           <div className="article-content">
             <h2 className="article-subtitle">Velit dapibus sollicitudin sit iaculis</h2>
             <h3 className="article-subtitle">Géré par :{article.pointName}</h3>
@@ -43,7 +52,7 @@ const ArticleDetailPage = () => {
           {/* Ajoutez plus de contenu de l'article ici */}
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 

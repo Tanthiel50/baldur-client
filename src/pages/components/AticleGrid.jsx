@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Importez useNavigate
 import axios from 'axios';
+import './aticleGrid.css';
 
 const ArticlesGrid = ({ apiUrl }) => {
   const [articles, setArticles] = useState([]);
@@ -33,7 +34,7 @@ const ArticlesGrid = ({ apiUrl }) => {
       <Row>
         {articles.map((article, index) => (
           <Col key={index} lg={4} md={6} className="mb-3">
-            <Card onClick={() => handleCardClick(article.id)}> {/* Ajoutez un gestionnaire de clic ici */}
+            <Card className='articleCard' onClick={() => handleCardClick(article.id)}> 
               <Card.Img variant="top" src={article.pointThumbnail || 'placeholder-image.jpg'} />
               <Card.Body>
                 <Card.Title>{article.pointTitle}</Card.Title>
