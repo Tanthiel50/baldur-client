@@ -31,7 +31,7 @@ const CategoriesButton = () => {
 
   return (
     <Container fluid className="categories-container">
-      <h2 className="text-center text-light mb-4">À voir</h2>
+      <h2 className="text-center text-light mb-4">Explorez Baldur</h2>
       <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
         {categoriesArray.map((category, idx) => (
           <Col key={idx} className="d-flex justify-content-center">

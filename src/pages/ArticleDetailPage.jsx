@@ -3,7 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import PageHeader from './components/PageHeader';
 import { Row, Col, Image } from 'react-bootstrap';
-import categoriesInfo from './components/categoriesInfo'; 
+import categoriesInfo from './components/categoriesInfo';
+import './ArticleDetailPage.css';
 
 const ArticleDetailPage = () => {
   const { articleId } = useParams();
@@ -43,15 +44,15 @@ const ArticleDetailPage = () => {
         backgroundImageUrl={article.pointThumbnail} 
       />
 
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-md-center article-detail-container">
         <Col md={8}>
           <h1 className="article-title">{article.pointTitle}</h1>
           <div className="article-content">
             <h2 className="article-subtitle">Velit dapibus sollicitudin sit iaculis</h2>
-            <h3 className="article-subtitle">Géré par :{article.pointName}</h3>
-            <h3 className="article-subtitle">Bon à savoir: {article.pointtips}</h3>
-            <h3 className="article-subtitle">Localisation: {article.pointAdress}</h3>
-            <h3 className="article-subtitle">A tester: {article.pointSpeciality}</h3>
+            <h3 className="article-subtitle"><span>Géré par :</span> {article.pointName}</h3>
+            <h3 className="article-subtitle"><span>Bon à savoir:</span>  {article.pointtips}</h3>
+            <h3 className="article-subtitle"><span>Localisation:</span> {article.pointAdress}</h3>
+            <h3 className="article-subtitle"><span>A tester:</span> {article.pointSpeciality}</h3>
             <p>{article.pointContent}</p>
           </div>
           {/* Ajoutez plus de contenu de l'article ici */}

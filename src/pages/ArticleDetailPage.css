@@ -9,15 +9,15 @@
     margin-bottom: 1rem;
   }
   
-  .article-meta {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 2rem;
-  }
   
   .article-subtitle {
     margin-top: 2rem;
     font-size: 1.5rem;
+  }
+
+  .article-subtitle span {
+    color: #f5c518;
+    font-style: italic;
   }
   
   .article-content p {
