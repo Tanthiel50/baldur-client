@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import PageHeader from './components/PageHeader';
 import { Row, Col, Image } from 'react-bootstrap';
+import categoriesInfo from './components/categoriesInfo'; 
 
 const ArticleDetailPage = () => {
   const { articleId } = useParams();
@@ -24,9 +24,14 @@ const ArticleDetailPage = () => {
 
   if (!article) return <div>Chargement de l'article...</div>;
 
+  // Utiliser l'ID de la catégorie pour récupérer le nom de la catégorie
+  const categoryName = article && categoriesInfo[article.pointCategories_id]
+    ? categoriesInfo[article.pointCategories_id].name
+    : 'Catégorie'; // Fallback sur 'Catégorie' si non trouvé
+
   const breadcrumbPath = (
     <>
-      <Link to={`/categories/${article.pointCategories_id}`}>Catégorie</Link> / {article.pointTitle}
+      <Link to={`/categories/${article.pointCategories_id}`}>{categoryName}</Link> / {article.pointTitle}
     </>
   );
 

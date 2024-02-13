@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'; // Importez useNavigate
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './aticleGrid.css';
 
 const ArticlesGrid = ({ apiUrl }) => {
   const [articles, setArticles] = useState([]);
-  const navigate = useNavigate(); // Utilisez useNavigate
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -26,7 +26,7 @@ const ArticlesGrid = ({ apiUrl }) => {
   };
 
   const handleCardClick = (articleId) => {
-    navigate(`/articles/${articleId}`); // Naviguez vers la page de détail de l'article
+    navigate(`/articles/${articleId}`); 
   };
 
   return (
