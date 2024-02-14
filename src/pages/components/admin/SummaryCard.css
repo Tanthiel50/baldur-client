@@ -1,0 +1,33 @@
+.summary-card {
+    flex: 1;
+    max-width: calc(33.333% - 20px); /* Substraire l'espace de la 'gap' défini plus haut */
+    display: flex;
+    align-items: center;
+    background-color: #D9D9D9;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Inclure padding dans le calcul de la largeur */
+    max-height: 100px;
+  }
+  
+  .summary-icon {
+    font-size: 24px;
+    margin-right: 20px;
+  }
+  
+  .summary-content {
+    text-align: center;
+    width: 100%; /* Prend toute la largeur disponible dans la carte */
+  }
+  
+  .summary-count {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .summary-title {
+    font-size: 18px;
+  }
+  
