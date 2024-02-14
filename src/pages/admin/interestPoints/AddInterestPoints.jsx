@@ -3,19 +3,24 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Sidebar from '../../components/admin/Sidebard';
+import { useUserContext } from '../../../context/UserProvider';
+import './AddInterestPoints.css';
 
 const AddInterestPoint = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const { user } = useUserContext();
 
   const onSubmit = async (data) => {
     const formData = new FormData();
     for (const key in data) {
-      formData.append(key, data[key]);
+      if (data[key] instanceof FileList) {
+        formData.append(key, data[key][0]);
+      } else {
+        formData.append(key, data[key]);
+      }
     }
+    formData.append('user_id', user.id);
 
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
     try {
       await axios.post('http://127.0.0.1:8000/api/interestpoints', formData, {
         headers: {
@@ -23,12 +28,25 @@ const AddInterestPoint = () => {
         },
       });
       toast.success('Point d\'intérêt créé avec succès');
-      reset(); // Réinitialiser le formulaire après la soumission réussie
+      reset();
     } catch (error) {
-      toast.error('Erreur lors de la création du point d\'intérêt');
+      // Vérification de la présence d'un message d'erreur dans la réponse du back-end
+      if (error.response && error.response.data && error.response.data.message) {
+        // Si l'erreur contient une structure détaillée (par exemple, des champs spécifiques en erreur)
+        if (typeof error.response.data.message === 'object') {
+          const messages = Object.values(error.response.data.message).join('. ');
+          toast.error(`Erreur : ${messages}`);
+        } else {
+          // Si l'erreur est une chaîne simple
+          toast.error(`Erreur : ${error.response.data.message}`);
+        }
+      } else {
+        // Message d'erreur générique si la réponse du back-end ne contient pas de détail
+        toast.error('Une erreur est survenue lors de la création du point d\'intérêt.');
+      }
       console.error('Erreur de soumission:', error);
     }
-  };
+};
 
   return (
     <div className="admin-container">
@@ -36,51 +54,56 @@ const AddInterestPoint = () => {
       <div className="admin-content">
         <h1>Créer un Point d'Intérêt</h1>
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
-          <div>
+          <div className="form-group">
             <label>Nom du Point:</label>
             <input {...register("pointName", { required: true })} />
-            {errors.pointName && <span>Ce champ est requis</span>}
+            {errors.pointName && <span className="error-message">Ce champ est requis</span>}
           </div>
-          <div>
+          <div className="form-group">
             <label>Titre:</label>
             <input {...register("pointTitle", { required: true })} />
-            {errors.pointTitle && <span>Ce champ est requis</span>}
+            {errors.pointTitle && <span className="error-message">Ce champ est requis</span>}
           </div>
-          <div>
+          <div className="form-group">
             <label>Slug (optionnel):</label>
             <input {...register("pointSlug")} />
           </div>
-          <div>
+          <div className="form-group">
             <label>Description:</label>
             <textarea {...register("pointDescription", { required: true })} />
-            {errors.pointDescription && <span>Ce champ est requis</span>}
+            {errors.pointDescription && <span className="error-message">Ce champ est requis</span>}
           </div>
-          <div>
+          <div className="form-group">
+            <label>Contenu:</label>
+            <textarea {...register("pointContent", { required: true })} />
+            {errors.pointContent && <span className="error-message">Ce champ est requis</span>}
+          </div>
+          <div className="form-group">
             <label>Vignette:</label>
             <input type="file" {...register("pointThumbnail", { required: true })} alt="Thumbnail" />
-            {errors.pointThumbnail && <span>Ce champ est requis</span>}
+            {errors.pointThumbnail && <span className="error-message">Ce champ est requis</span>}
           </div>
-          <div>
+          <div className="form-group">
             <label>Titre de la Vignette (optionnel):</label>
             <input {...register("pointThumbnailTitle")} />
           </div>
-          <div>
+          <div className="form-group">
             <label>Adresse:</label>
             <input {...register("pointAdress", { required: true })} />
-            {errors.pointAdress && <span>Ce champ est requis</span>}
+            {errors.pointAdress && <span className="error-message">Ce champ est requis</span>}
           </div>
-          <div>
+          <div className="form-group">
             <label>Spécialité:</label>
             <input {...register("pointSpeciality", { required: true })} />
-            {errors.pointSpeciality && <span>Ce champ est requis</span>}
+            {errors.pointSpeciality && <span className="error-message">Ce champ est requis</span>}
           </div>
-          <div>
+          <div className="form-group">
             <label>ID Catégorie:</label>
             <input type="number" {...register("pointCategories_id", { required: true })} />
-            {errors.pointCategories_id && <span>Ce champ est requis</span>}
+            {errors.pointCategories_id && <span className="error-message">Ce champ est requis</span>}
           </div>
           <div>
-            <button type="submit">Créer</button>
+            <button type="submit" className="button-5">Créer</button>
           </div>
         </form>
       </div>
