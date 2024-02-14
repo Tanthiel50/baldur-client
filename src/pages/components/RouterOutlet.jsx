@@ -4,6 +4,8 @@ import LoginForm from "../LoginForm";
 import CategoryPage from "./CategoryPage";
 import ArticleDetailPage from "../ArticleDetailPage";
 import Admin from "../Admin";
+import AddInterestPoint from "../admin/interestPoints/AddInterestPoints";
+
 
 
 const RouterOutlet = () => {
@@ -14,6 +16,7 @@ const RouterOutlet = () => {
       <Route path="/articles/:articleId" element={<ArticleDetailPage />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/login" element={<LoginForm />} />
+      <Route path="/admin/create-interest-point" element={<AddInterestPoint />} />
     </Routes>
   );
 };
