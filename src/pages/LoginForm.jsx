@@ -50,7 +50,11 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="login-page">
+    <div className="login-container">
+    <div className="login-image-section">
+    </div>
+    <div className="login-form-section">
+    <div className="login-form-container">
       <form onSubmit={handleSubmit} className="login-form">
         <h2>Connexion</h2>
         <label htmlFor="email">Email</label>
@@ -73,6 +77,8 @@ const LoginForm = () => {
         />
         <button type="submit" className="login-button">Se connecter</button>
       </form>
+    </div>
+    </div>
     </div>
   );
 };

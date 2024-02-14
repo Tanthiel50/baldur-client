@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
 import RouterOutlet from "../src/pages/components/RouterOutlet";
-import { UserProvider, useUserContext } from "./context/UserProvider";
+import { UserProvider } from "./context/UserProvider";
 import Layout from "./pages/components/layout/Layout";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

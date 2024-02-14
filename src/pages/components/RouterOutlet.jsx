@@ -10,7 +10,6 @@ const RouterOutlet = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<LoginForm />} />
       <Route path="/categories/:categoryId" element={<CategoryPage />} />
       <Route path="/articles/:articleId" element={<ArticleDetailPage />} />
       <Route path="/admin" element={<Admin />} />
