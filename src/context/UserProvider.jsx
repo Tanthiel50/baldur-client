@@ -21,7 +21,7 @@ export const UserProvider = ({ children }) => {
 	  const response = await axios.post('/security/login', { email, password });
 	  const token = response.data.token;
 	  localStorage.setItem('token', token);
-	//   setAxiosAuthToken(token);
+	  setAxiosAuthToken(token);
 	  setUser({ email, token }); // Vous pouvez stocker l'email dans l'état de l'utilisateur si nécessaire
 	} catch (error) {
 		console.error('Erreur de connexion', error.response ? error.response.data : error);
@@ -31,7 +31,7 @@ export const UserProvider = ({ children }) => {
   // Fonction pour se déconnecter
   const logout = () => {
     localStorage.removeItem('token'); // Effacez le token de localStorage
-    // setAxiosAuthToken(null); // Effacez le token de la configuration Axios
+    setAxiosAuthToken(null); // Effacez le token de la configuration Axios
     setUser(null); // Effacez l'état de l'utilisateur
   };
 
@@ -39,7 +39,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-    //   setAxiosAuthToken(token);
+      setAxiosAuthToken(token);
       // Validez le token avec le serveur
       axios.get('http://127.0.0.1:8000/api/security/validate-token')
         .then(response => {

@@ -1,8 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { useUserContext } from '../context/UserProvider';
 import './LoginForm.css';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const { login } = useUserContext(); 
 
@@ -17,10 +21,31 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login(credentials.email, credentials.password);
+      const response = await axios.post('/security/login', {email:credentials.email, password:credentials.password});
+      const token = response.data.token;
+      localStorage.setItem('token', token);
+      toast.success('Connexion réussie !', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      navigate('/');
+      console.log(response.data);
     } catch (error) {
       console.error('Erreur de connexion', error);
-
+      toast.error('Erreur de connexion. Veuillez réessayer.', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
