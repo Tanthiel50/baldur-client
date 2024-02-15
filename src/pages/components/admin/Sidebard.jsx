@@ -1,21 +1,23 @@
 import React from 'react';
-import './Sidebard.css'; 
+import { useNavigate } from 'react-router-dom'; // Importez useNavigate
+import './Sidebard.css';
 
 const Sidebar = () => {
+  const navigate = useNavigate(); 
+
+  const handleItemClick = (path) => {
+    navigate(path); 
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar-header">
         Baldur
       </div>
       <ul className="sidebar-menu">
-        <li>Dashboard</li>
-        <li>Interest Article</li>
-        <li>Interest points</li>
-        <li>Media Interest</li>
-        <li>Articles</li>
-        <li>Catégories</li>
-        <li>Media Article</li>
-        <li>User</li>
+        <li onClick={() =>handleItemClick ('/admin')}>Dashboard</li>
+        <li onClick={() => handleItemClick('/admin/interest-articles')}>Interest Article</li>
+        {/* ...autres éléments de la liste */}
       </ul>
     </div>
   );

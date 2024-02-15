@@ -5,6 +5,7 @@ import CategoryPage from "./CategoryPage";
 import ArticleDetailPage from "../ArticleDetailPage";
 import Admin from "../Admin";
 import AddInterestPoint from "../admin/interestPoints/AddInterestPoints";
+import InterestArticlesPage from "../admin/interestPoints/InterestArticlePage";
 
 
 
@@ -17,6 +18,7 @@ const RouterOutlet = () => {
       <Route path="/admin" element={<Admin />} />
       <Route path="/login" element={<LoginForm />} />
       <Route path="/admin/create-interest-point" element={<AddInterestPoint />} />
+      <Route path="/admin/interest-articles" element={<InterestArticlesPage />} />
     </Routes>
   );
 };
