@@ -6,13 +6,19 @@ import './aticleGrid.css';
 
 const ArticlesGrid = ({ apiUrl }) => {
   const [articles, setArticles] = useState([]);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
         const { data } = await axios.get(apiUrl);
-        setArticles(data);
+        // Ajoutez la logique pour construire l'URL complète ici si nécessaire
+        const updatedData = data.map(article => ({
+          ...article,
+          // Assurez-vous que 'pointThumbnail' contient le chemin après 'storage/'
+          pointThumbnail: article.pointThumbnail ? `http://127.0.0.1:8000/storage/${article.pointThumbnail}` : 'placeholder-image.jpg',
+        }));
+        setArticles(updatedData);
       } catch (error) {
         console.error('Erreur lors de la récupération des articles:', error);
       }
@@ -26,7 +32,7 @@ const ArticlesGrid = ({ apiUrl }) => {
   };
 
   const handleCardClick = (articleId) => {
-    navigate(`/articles/${articleId}`); 
+    navigate(`/articles/${articleId}`);
   };
 
   return (
@@ -35,7 +41,7 @@ const ArticlesGrid = ({ apiUrl }) => {
         {articles.map((article, index) => (
           <Col key={index} lg={4} md={6} className="mb-3">
             <Card className='articleCard' onClick={() => handleCardClick(article.id)}> 
-              <Card.Img variant="top" src={article.pointThumbnail || 'placeholder-image.jpg'} />
+              <Card.Img variant="top" src={article.pointThumbnail} />
               <Card.Body>
                 <Card.Title>{article.pointTitle}</Card.Title>
                 <Card.Text>

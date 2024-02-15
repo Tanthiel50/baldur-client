@@ -2,18 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import GameCard from './GameCard';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Importez useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const GameCardGrid = ({ apiUrl, cardColors }) => {
   const [items, setItems] = useState([]);
-  const navigate = useNavigate(); // Initialisez useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/api/${apiUrl}`);
-        const data = response.data.slice(0, 3); // Limitez à 3 éléments pour l'exemple
-        setItems(data);
+        const updatedData = response.data.slice(0, 3).map(item => ({
+          ...item,
+          // Assurez-vous que la structure de l'objet correspond et ajustez le chemin si nécessaire
+          pointThumbnail: `http://127.0.0.1:8000/storage/${item.pointThumbnail}`
+        }));
+        setItems(updatedData);
       } catch (error) {
         console.error('Erreur lors de la récupération des données', error);
       }
@@ -22,9 +26,8 @@ const GameCardGrid = ({ apiUrl, cardColors }) => {
     fetchItems();
   }, [apiUrl]);
 
-  // Fonction pour gérer le clic sur une carte d'article
   const handleCardClick = (itemId) => {
-    navigate(`/articles/${itemId}`); // Naviguez vers la page de détails de l'article
+    navigate(`/articles/${itemId}`);
   };
 
   return (
@@ -39,7 +42,7 @@ const GameCardGrid = ({ apiUrl, cardColors }) => {
                 title={item.pointTitle}
                 thumbnail={item.pointThumbnail}
                 content={item.pointContent}
-                onClick={() => handleCardClick(item.id)} // Ajoutez l'événement onClick
+                onClick={() => handleCardClick(item.id)}
               />
             </Col>
           ))

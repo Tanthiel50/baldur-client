@@ -28,7 +28,7 @@ const ArticleDetailPage = () => {
   // Utiliser l'ID de la catégorie pour récupérer le nom de la catégorie
   const categoryName = article && categoriesInfo[article.pointCategories_id]
     ? categoriesInfo[article.pointCategories_id].name
-    : 'Catégorie'; // Fallback sur 'Catégorie' si non trouvé
+    : 'Catégorie';
 
   const breadcrumbPath = (
     <>
@@ -36,12 +36,14 @@ const ArticleDetailPage = () => {
     </>
   );
 
+  const imageUrl = article.pointThumbnail ? `http://127.0.0.1:8000/storage/${article.pointThumbnail}` : 'URL_PAR_DEFAUT_SI_NECCESSAIRE';
+
   return (
     <div>
       <PageHeader
         title={article.pointTitle}
         breadcrumbPath={breadcrumbPath}
-        backgroundImageUrl={article.pointThumbnail} 
+        backgroundImageUrl={imageUrl} 
       />
 
       <Row className="justify-content-md-center article-detail-container">
@@ -55,7 +57,6 @@ const ArticleDetailPage = () => {
             <h3 className="article-subtitle"><span>A tester:</span> {article.pointSpeciality}</h3>
             <p>{article.pointContent}</p>
           </div>
-          {/* Ajoutez plus de contenu de l'article ici */}
         </Col>
       </Row>
     </div>
