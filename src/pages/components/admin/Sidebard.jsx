@@ -17,6 +17,8 @@ const Sidebar = () => {
       <ul className="sidebar-menu">
         <li onClick={() =>handleItemClick ('/admin')}>Dashboard</li>
         <li onClick={() => handleItemClick('/admin/interest-articles')}>Interest Article</li>
+        <li onClick={() => handleItemClick('/admin/interest-categories')}>Interest Catégories</li>
+        <li>Interest Pictures</li>
         {/* ...autres éléments de la liste */}
       </ul>
     </div>

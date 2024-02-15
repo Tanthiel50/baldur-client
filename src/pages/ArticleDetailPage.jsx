@@ -48,10 +48,10 @@ const ArticleDetailPage = () => {
 
       <Row className="justify-content-md-center article-detail-container">
         <Col md={8}>
-          <h1 className="article-title">{article.pointTitle}</h1>
+          <h1 className="article-title">{article.pointName}</h1>
           <div className="article-content">
             {/* <h2 className="article-subtitle">Velit dapibus sollicitudin sit iaculis</h2> */}
-            <h3 className="article-subtitle"><span>Géré par :</span> {article.pointName}</h3>
+            <h3 className="article-subtitle"><span>Géré par :</span> {article.pointTitle}</h3>
             <h3 className="article-subtitle"><span>Tips:</span>  {article.pointtips}</h3>
             <h3 className="article-subtitle"><span>Localisation:</span> {article.pointAdress}</h3>
             <h3 className="article-subtitle"><span>Speciality:</span> {article.pointSpeciality}</h3>

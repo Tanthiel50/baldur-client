@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useParams } from "react-router-dom";
 import Sidebar from '../../components/admin/Sidebard';
 import { useUserContext } from '../../../context/UserProvider';
 import './AddInterestPoints.css';
 import categoriesInfo from "../../components/categoriesInfo";
+import { useNavigate } from 'react-router-dom';
 
 const AddInterestPoint = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const { user } = useUserContext();
   const [thumbnailPreview, setThumbnailPreview] = useState("");
+  const navigate = useNavigate();
 
   const handleThumbnailChange = (e) => {
     const file = e.target.files[0];
@@ -42,6 +43,7 @@ const AddInterestPoint = () => {
       });
       toast.success('Point d\'intérêt créé avec succès');
       reset();
+      navigate('/admin/interest-articles');
     } catch (error) {
       // Vérification de la présence d'un message d'erreur dans la réponse du back-end
       if (error.response && error.response.data && error.response.data.message) {

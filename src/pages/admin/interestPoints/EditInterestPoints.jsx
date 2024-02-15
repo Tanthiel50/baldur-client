@@ -59,22 +59,26 @@ const EditInterestPoints = () => {
   };
 
   const onSubmit = async (data) => {
-    try {
-      const formData = new FormData();
-      Object.keys(data).forEach((key) => {
-        formData.append(key, data[key]);
-      });
-
-      if (data.pointThumbnail.length > 0) {
-        formData.append("pointThumbnail", data.pointThumbnail[0]);
+    const formData = new FormData();
+    for (const key in data) {
+      if (data[key] instanceof FileList) {
+        formData.append(key, data[key][0]); // Ajoutez le fichier au formData
+      } else {
+        formData.append(key, data[key]); // Ajoutez les autres valeurs au formData
       }
-
-      await axios.post(
-        `http://127.0.0.1:8000/api/interestpoints/${id}`,
-        formData
-      );
-      toast.success("L'article a été modifié avec succès!");
-    } catch (error) {
+    }
+    // Simulez une requête PUT
+    formData.append('_method', 'PUT'); 
+  
+    try {
+      await axios.post(`http://127.0.0.1:8000/api/interestpoints/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      toast.success('L\'article a été modifié avec succès!');
+      // Ici, vous pouvez réinitialiser le formulaire ou effectuer d'autres actions post-soumission
+    }catch (error) {
       // Vérification de la présence d'un message d'erreur dans la réponse du back-end
       if (
         error.response &&
