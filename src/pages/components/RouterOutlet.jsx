@@ -6,6 +6,7 @@ import ArticleDetailPage from "../ArticleDetailPage";
 import Admin from "../Admin";
 import AddInterestPoint from "../admin/interestPoints/AddInterestPoints";
 import InterestArticlesPage from "../admin/interestPoints/InterestArticlePage";
+import EditInterestPoints from "../admin/interestPoints/EditInterestPoints";
 
 
 
@@ -19,6 +20,7 @@ const RouterOutlet = () => {
       <Route path="/login" element={<LoginForm />} />
       <Route path="/admin/create-interest-point" element={<AddInterestPoint />} />
       <Route path="/admin/interest-articles" element={<InterestArticlesPage />} />
+      <Route path="/admin/edit-interest-point/:id" element={<EditInterestPoints />} />
     </Routes>
   );
 };

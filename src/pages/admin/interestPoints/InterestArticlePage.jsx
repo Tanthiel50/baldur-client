@@ -48,6 +48,11 @@ const InterestArticlesPage = () => {
     }
   };
 
+  const handleEditClick = (articleId) => {
+    navigate(`/admin/edit-interest-point/${articleId}`);
+  };
+
+
   return (
     <div className="admin-container">
     <Sidebar />
@@ -72,7 +77,7 @@ const InterestArticlesPage = () => {
             <td>{article.user.firstName}</td>
             <td>{new Date(article.created_at).toLocaleDateString()}</td>
             <td> 
-              <FaEdit onClick={() => navigate(`/admin/edit-interest-point/${article.id}`)} />
+              <FaEdit onClick={() => handleEditClick(article.id)} />
               <FaTrashAlt onClick={() => handleDelete(article.id)} />
             </td>
           </tr>

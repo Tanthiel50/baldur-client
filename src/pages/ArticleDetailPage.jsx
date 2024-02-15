@@ -50,12 +50,13 @@ const ArticleDetailPage = () => {
         <Col md={8}>
           <h1 className="article-title">{article.pointTitle}</h1>
           <div className="article-content">
-            <h2 className="article-subtitle">Velit dapibus sollicitudin sit iaculis</h2>
+            {/* <h2 className="article-subtitle">Velit dapibus sollicitudin sit iaculis</h2> */}
             <h3 className="article-subtitle"><span>Géré par :</span> {article.pointName}</h3>
-            <h3 className="article-subtitle"><span>Bon à savoir:</span>  {article.pointtips}</h3>
+            <h3 className="article-subtitle"><span>Tips:</span>  {article.pointtips}</h3>
             <h3 className="article-subtitle"><span>Localisation:</span> {article.pointAdress}</h3>
-            <h3 className="article-subtitle"><span>A tester:</span> {article.pointSpeciality}</h3>
-            <p>{article.pointContent}</p>
+            <h3 className="article-subtitle"><span>Speciality:</span> {article.pointSpeciality}</h3>
+            <h3 className="article-subtitle"><span>Description: </span>{article.pointDescription}</h3>
+            <h3 className="article-subtitle"><span>What to expect ? : </span>{article.pointContent}</h3>
           </div>
         </Col>
       </Row>
