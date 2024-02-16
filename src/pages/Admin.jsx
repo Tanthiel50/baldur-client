@@ -2,6 +2,7 @@ import React from "react";
 import SummaryCard from "./components/admin/SummaryCard";
 import "./Admin.css";
 import Sidebar from "./components/admin/Sidebard";
+import ArticlesChart from "./components/admin/ArticlesChart";
 
 function Admin() {
   return (
@@ -20,6 +21,7 @@ function Admin() {
           <SummaryCard title="Catégories interets" count="10" />
           <SummaryCard title="Images interets" count="10" />
         </div>
+        <ArticlesChart />
       </div>
     </div>
   );
