@@ -6,11 +6,15 @@ import Sidebar from "../../components/admin/Sidebard";
 import { toast } from "react-toastify";
 import "./AddInterestPoints.css";
 import categoriesInfo from "../../components/categoriesInfo";
+import { useUserContext } from '../../../context/UserProvider';
 
 const EditInterestPoints = () => {
   const { id } = useParams();
+  const { user } = useUserContext();
   const [article, setArticle] = useState(null);
   const [thumbnailPreview, setThumbnailPreview] = useState("");
+  const [currentThumbnail, setCurrentThumbnail] = useState("");
+  const [newThumbnail, setNewThumbnail] = useState(null);
   const {
     register,
     handleSubmit,
@@ -36,6 +40,8 @@ const EditInterestPoints = () => {
           "pointSpeciality",
           "pointCategories_id",
           "pointContent",
+          "pointThumbnailTitle",
+          "pointThumbnail",
         ];
         fields.forEach((field) => setValue(field, response.data[field]));
         if (response.data.pointThumbnail) {
@@ -43,6 +49,17 @@ const EditInterestPoints = () => {
             `http://127.0.0.1:8000/storage/${response.data.pointThumbnail}`
           );
         }
+        if (article && article.pointThumbnail) {
+          setCurrentThumbnail(`http://127.0.0.1:8000/storage/${article.pointThumbnail}`);
+      }
+      
+      const handleThumbnailChange = (e) => {
+          const file = e.target.files[0];
+          if (file) {
+              setNewThumbnail(file);
+              setThumbnailPreview(URL.createObjectURL(file));
+          }
+      };
       } catch (error) {
         console.error("Erreur lors de la récupération de l'article:", error);
       }
@@ -60,24 +77,31 @@ const EditInterestPoints = () => {
 
   const onSubmit = async (data) => {
     const formData = new FormData();
-    for (const key in data) {
-      if (data[key] instanceof FileList) {
-        formData.append(key, data[key][0]); // Ajoutez le fichier au formData
-      } else {
-        formData.append(key, data[key]); // Ajoutez les autres valeurs au formData
-      }
+    Object.keys(data).forEach(key => {
+        // Ajoutez toutes les données sauf l'image pour le moment
+        if (key !== "pointThumbnail") {
+            formData.append(key, data[key]);
+        }
+    });
+
+    // Ajoutez l'image uniquement si une nouvelle a été sélectionnée
+    if (newThumbnail) {
+        formData.append("pointThumbnail", newThumbnail);
     }
-    // Simulez une requête PUT
-    formData.append('_method', 'PUT'); 
-  
+
+    // Vérifiez si un utilisateur est attaché et ajoutez son ID
+    if (user && user.id) {
+        formData.append("user_id", user.id);
+    }
+
     try {
-      await axios.post(`http://127.0.0.1:8000/api/interestpoints/${id}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      toast.success('L\'article a été modifié avec succès!');
-      // Ici, vous pouvez réinitialiser le formulaire ou effectuer d'autres actions post-soumission
+        await axios.post(`http://127.0.0.1:8000/api/interestpoints/edit/${id}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        toast.success('L\'article a été modifié avec succès!');
+        // Redirigez ici après la réussite ou réinitialisez le formulaire
     }catch (error) {
       // Vérification de la présence d'un message d'erreur dans la réponse du back-end
       if (

@@ -62,10 +62,10 @@ const EditInterestPointCategories = () => {
       }
     }
     // Simulez une requête PUT
-    formData.append('_method', 'PUT'); 
+    // formData.append('_method', 'PUT'); 
   
     try {
-      await axios.post(`http://127.0.0.1:8000/api/pointcategories/${id}`, formData, {
+      await axios.post(`http://127.0.0.1:8000/api/pointcategories/edit/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

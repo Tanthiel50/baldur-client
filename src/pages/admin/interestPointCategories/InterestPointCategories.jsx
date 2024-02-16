@@ -49,7 +49,7 @@ const InterestArticlesPage = () => {
   };
 
   const handleEditClick = (articleId) => {
-    navigate(`/admin/edit-interest-point-categorie/${articleId}`);
+    navigate(`/admin/edit-interest-categories/${articleId}`);
   };
 
 
