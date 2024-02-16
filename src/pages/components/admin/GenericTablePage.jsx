@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Button, Table } from 'react-bootstrap';
 import Sidebar from '../../components/admin/Sidebard';
 import { useNavigate } from 'react-router-dom';
-import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 const GenericTablePage = ({

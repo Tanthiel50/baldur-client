@@ -6,6 +6,7 @@ import categoriesInfo from '../../components/categoriesInfo';
 import { useNavigate } from 'react-router-dom';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import GenericTablePage from '../../components/admin/GenericTablePage';
 
 const InterestArticlesPage = () => {
   const [articles, setArticles] = useState([]);
@@ -54,38 +55,27 @@ const InterestArticlesPage = () => {
 
 
   return (
-    <div className="admin-container">
-    <Sidebar />
-    <div className="admin-content">
-      <h1>Liste des articles</h1>
-    <Button onClick={handleCreateNewClick} className="mb-3">Créer nouvel article</Button>
-    <Table striped bordered hover responsive >
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Catégorie</th>
-          <th>Publié par</th>
-          <th>Date</th>
-          <th>Action</th>
+    <GenericTablePage
+      title="Liste des articles"
+      createPath="/admin/create-interest-point"
+      fetchDataUrl="http://127.0.0.1:8000/api/interestpoints"
+      deleteDataUrl="http://127.0.0.1:8000/api/interestpoints"
+      editPathPrefix="/admin/edit-interest-point"
+      columns={["Nom du point", "Personne", "Catégorie", "Rédaction", "Date de création", "Action"]}
+      mapDataToRow={(handleEditClick, handleDelete) => (item) => (
+        <tr key={item.id}>
+          <td>{item.pointName}</td>
+          <td>{item.pointTitle}</td>
+          <td>{categoriesInfo[item.pointCategories_id]?.name || 'Non catégorisé'}</td>
+          <td>{item.user.firstName}</td>
+          <td>{item.created_at}</td>
+          <td>
+            <FaEdit onClick={() => handleEditClick(item.id)} />
+            <FaTrashAlt onClick={() => handleDelete(item.id)} />
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        {articles.map((article, index) => (
-          <tr key={article.id}>
-            <td>{article.pointTitle}</td>
-            <td>{categoriesInfo[article.pointCategories_id]?.name || 'Non catégorisé'}</td>
-            <td>{article.user.firstName}</td>
-            <td>{new Date(article.created_at).toLocaleDateString()}</td>
-            <td> 
-              <FaEdit onClick={() => handleEditClick(article.id)} />
-              <FaTrashAlt onClick={() => handleDelete(article.id)} />
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </Table>
-    </div>
-    </div>
+      )}
+    />
   );
 };
 
